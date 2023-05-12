@@ -5,9 +5,11 @@ const connectDb = require('./db/connect');
 
 require('dotenv').config();
 
+// middleware
+app.use(express.static('./public'));
 app.use(express.json());
 
-const users = require('./routes/userRouter');
+const userRoute = require('./routes/userRouter');
 
 const start = async () => {
     try {
@@ -24,15 +26,9 @@ const start = async () => {
 
 start();
 
+// routes
+app.use('/api/v1/users', userRoute);
 
-app.use('/api/v1/users', users);
-
-app.get('/abc', (req, res) => {
-    res.status(200).send({
-        alphabet: 'A',
-        small: 'a'
-    })
-});
 
 app.post('/abc/:id', (req, res) => {
     const { id } = req.params;
