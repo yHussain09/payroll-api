@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const connectDb = require('./db/connect');
-
 require('dotenv').config();
+const notFound = require('./middleware/not-found');
+const apiErrorHandlerMiddleware = require('./middleware/error-handler');
 
 // middleware
 app.use(express.static('./public'));
@@ -29,6 +30,8 @@ start();
 // routes
 app.use('/api/v1/users', userRoute);
 
+app.use(notFound);
+app.use(apiErrorHandlerMiddleware);
 
 app.post('/abc/:id', (req, res) => {
     const { id } = req.params;
