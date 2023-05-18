@@ -1,0 +1,23 @@
+[
+    {
+        "firstName": "yasir",
+        "lastName": "hussain",
+        "dateOfBirth": "06-06-1990",
+        "password": "yHussain123",
+        "contactNumber": "0347-2064310"
+    },
+    {
+        "firstName": "huzaifa",
+        "lastName": "ali",
+        "dateOfBirth": "02-01-2000",
+        "password": "hAli123",
+        "contactNumber": "0347-1234567"
+    },
+    {
+        "firstName": "daud",
+        "lastName": "mujib",
+        "dateOfBirth": "11-09-1989",
+        "password": "dMujib123",
+        "contactNumber": "0347-7654321"
+    }
+]
