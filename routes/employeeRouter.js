@@ -1,8 +1,14 @@
-const express = require('express');
+const express = require("express");
 const employeeRouter = express.Router();
 
-const { getAllEmployees } = require('../controllers/employeeController');
+const {
+  createEmployee,
+  createAttendance,
+  generateSalarySlips,
+} = require("../controllers/employeeController");
 
-employeeRouter.route("/").get(getAllEmployees);
+employeeRouter.route("/").post(createEmployee);
+employeeRouter.route("/attendance").post(createAttendance);
+employeeRouter.route("/salary-slips").post(generateSalarySlips);
 
 module.exports = employeeRouter;
