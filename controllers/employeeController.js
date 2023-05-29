@@ -1,6 +1,8 @@
-const getAllEmployees = async (req, res) => {
-    throw new Error('employees not found!');
-    res.status(200).json({ msg: 'employees...' });
+const Employee = require('../models/employeeModel');
+
+const getEmployees = async (req, res) => {
+    const employees = await Employee.find({});
+    res.status(200).json({ employees });
 }
 
-module.exports = { getAllEmployees };
+module.exports = { getEmployees };

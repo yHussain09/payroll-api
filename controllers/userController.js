@@ -3,8 +3,16 @@ const asyncWrapper = require('../middleware/async');
 const { createCustomError } = require('../error/custom-error');
 
 const getUsers = asyncWrapper(async (req, res) => {
-    const users = await UserModel.find({});
-    res.status(200).json({ users });
+    const { isAdmin, firstName } = req.query;
+    const queryObject = {};
+    if(isAdmin) {
+        queryObject.isAdmin = isAdmin === 'true' ? true : false;
+    }
+    if(firstName) {
+        queryObject.firstName = { $regex: firstName, $options: 'i' } ;
+    }
+    const users = await UserModel.find(queryObject);
+    res.status(200).json({ users, nbHits: users.length });
 }); 
 
 const createUser = asyncWrapper(async (req, res) => {
